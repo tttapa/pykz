@@ -1,0 +1,8 @@
+__pycache__
+venv
+test-basic-plot.log
+test-basic-plot.aux
+*.pyc
+**/*.pyc
+pykz/__pycache__ tests/__pycache__
+test-basic-plot.pdf

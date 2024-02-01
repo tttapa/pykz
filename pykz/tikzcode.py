@@ -2,6 +2,18 @@ from typing import Union
 from . import formatting
 
 
+class TexCommand:
+
+    def __init__(self, code: str):
+        self.code = code
+
+    def __str__(self) -> str:
+        self.get_code()
+
+    def get_code(self) -> str:
+        return self.code
+
+
 class TikzCode:
     """Low-level representation of tikz code.
     The tikz code is represented as a list of lines.
@@ -19,7 +31,7 @@ class TikzCode:
         self.lines = []
 
     def __cmd(self, cmd: str) -> "TikzCode":
-        self.add_line(cmd)
+        self.add_line(TexCommand(cmd))
         return self
 
     def colorlet(self, colorname: str, colordef: str) -> "TikzCode":
@@ -42,8 +54,10 @@ class TikzCode:
     def draw(self, *coordinates, **options) -> "TikzCode":
         return self.__cmd(f"\\draw{formatting.format_options(**options)} {'--'.join(coordinates)};")
 
-    def add_line(self, line: str) -> "TikzCode":
+    def add_line(self, line: TexCommand | str) -> "TikzCode":
+        if isinstance(line, str):
+            line = TexCommand(line)
         self.lines.append(line)
 
     def get_code(self) -> str:
-        return "\n".join(self.lines) + "\n"
+        return "\n".join(line.get_code() for line in self.lines) + "\n"

@@ -1,9 +1,10 @@
-from . import formatting
+from .. import formatting
 from ..tikzcode import TikzCode
-from ..environment import Environment
+from .. import environment as env
+from . import axis as ax
 
 
-class TikzPicture(Environment):
+class TikzPicture(env.Environment):
 
     def __init__(self, standalone: bool = True, **options):
         super().__init__("tikzpicture", **options)
@@ -12,6 +13,10 @@ class TikzPicture(Environment):
 
     def add_preamble_line(self, line: str):
         self.preamble.add_line(line)
+
+    def add_axis(self, axis: ax.Axis):
+        self.add(axis)
+        self.preamble.usepackage("pgfplots")
 
     def get_code(self) -> str:
         preamble = ""
@@ -29,10 +34,15 @@ class TikzPicture(Environment):
         return preamble + content
 
     def export(self, filename: str):
-
         # Create the file directory if it doesn't exist already.
         import os
-        os.makedirs(os.path.dirname(filename), exist_ok=True)
+        parent = os.path.dirname(filename)
+        if parent:
+            os.makedirs(os.path.dirname(filename), exist_ok=True)
+
+        if not filename.endswith(".tex") and \
+           not filename.endswith(".tikz"):
+            filename = filename + ".tex"
 
         with open(filename, "w") as f:
             f.write(self.get_code())

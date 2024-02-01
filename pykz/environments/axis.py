@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from enum import Enum
-from ..environment import Environment
+from .. import environment as env
 
 
 @dataclass
@@ -30,7 +30,7 @@ class Grid(Enum):
     none = "none"
 
 
-class Axis(Environment):
+class Axis(env.Environment):
 
     def __init__(self,
                  xlabel: str = None,

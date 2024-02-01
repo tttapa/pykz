@@ -8,8 +8,9 @@ def __export_to_tempfile(code: str) -> str:
     import tempfile
 
     with tempfile.NamedTemporaryFile(mode="w", delete=False) as f:
+        print("Writing to tempfile")
         f.write(code)
-        f.flush()
+        # f.flush()
     return f.name
 
 
@@ -26,12 +27,16 @@ def build_latex_file(path: str) -> str:
 
     try:
         # Run pdflatex command
-        subprocess.run(['pdflatex', path], capture_output=True,
-                       cwd=working_dir, check=True)
+        print("Running pdflatex")
+        subprocess.run(['pdflatex', "-interaction=nonstopmode", "-halt-on-error", path],
+                       capture_output=True,
+                       cwd=working_dir,
+                       check=True)
+        print("Pdflatex done!")
     except FileNotFoundError:
         raise PDFlatexNotFoundError("pdflatex command not found. Please make sure it is installed and accessible in the system's PATH.")
     except subprocess.CalledProcessError as e:
-        error_message = f"Compilation failed with error: {e}"
+        error_message = f"{e.stdout.decode('UTF-8')}\n\nCompilation failed with the error above ☝️ "
         raise CompilationError(error_message)
     import os
 
@@ -46,6 +51,7 @@ def build_latex_file(path: str) -> str:
 def open_pdf_file(file_path: str):
     import sys
     import subprocess
+    print("Opening pdf file")
 
     if sys.platform.startswith('darwin'):  # macOS
         result = subprocess.run(['open', file_path], capture_output=True, text=True)
