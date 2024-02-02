@@ -2,7 +2,7 @@ from typing import Union
 from . import formatting
 
 
-class TexCommand:
+class Tex:
 
     def __init__(self, code: str):
         self.code = code
@@ -31,7 +31,7 @@ class TikzCode:
         self.lines = []
 
     def __cmd(self, cmd: str) -> "TikzCode":
-        self.add_line(TexCommand(cmd))
+        self.add_line(Tex(cmd))
         return self
 
     def colorlet(self, colorname: str, colordef: str) -> "TikzCode":
@@ -54,9 +54,9 @@ class TikzCode:
     def draw(self, *coordinates, **options) -> "TikzCode":
         return self.__cmd(f"\\draw{formatting.format_options(**options)} {'--'.join(coordinates)};")
 
-    def add_line(self, line: TexCommand | str) -> "TikzCode":
+    def add_line(self, line: Tex | str) -> "TikzCode":
         if isinstance(line, str):
-            line = TexCommand(line)
+            line = Tex(line)
         self.lines.append(line)
 
     def get_code(self) -> str:

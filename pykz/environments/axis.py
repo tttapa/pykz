@@ -73,3 +73,40 @@ class Axis(env.Environment):
                      if value is not None
                      }
         super().__init__("axis", **arguments, **extra)
+
+    def set_xlabel(self, label: str):
+        self.options.set_option("xlabel", label)
+
+    def set_ylabel(self, label: str):
+        self.options.set_option("ylabel", label)
+
+    def set_zlabel(self, label: str):
+        self.options.set_option("zlabel", label)
+
+    def set_xlims(self, lims: tuple[float]):
+        (self.options["xmin"], self.options["xmax"]) = lims
+
+    def set_ylims(self, lims: tuple[float]):
+        (self.options["ymin"], self.options["ymax"]) = lims
+
+    def set_zlims(self, lims: tuple[float]):
+        (self.options["zmin"], self.options["zmax"]) = lims
+
+    def set_xmax(self, v):
+        self.options["xmax"] = v
+
+    def set_ymax(self, v):
+        self.options["ymax"] = v
+
+    def set_zmax(self, v):
+        self.options["zmax"] = v
+
+    def set_xmin(self, v):
+        self.options["xmin"] = v
+
+    def set_ymin(self, v):
+        self.options["ymin"] = v
+
+    def set_zmin(self, v):
+        self.options["zmin"] = v
+

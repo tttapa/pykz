@@ -1,5 +1,6 @@
 from .. import formatting
 from ..tikzcode import TikzCode
+from ..command import Command
 from .. import environment as env
 from . import axis as ax
 
@@ -17,6 +18,7 @@ class TikzPicture(env.Environment):
     def add_axis(self, axis: ax.Axis):
         self.add(axis)
         self.preamble.usepackage("pgfplots")
+        self.preamble.add_line(Command("pgfplotsset", "compat=1.18"))
 
     def get_code(self) -> str:
         preamble = ""

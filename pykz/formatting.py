@@ -1,7 +1,7 @@
 import numpy as np
 
 
-def format_options(**options) -> str:
+def format_options(replace_underscores=True, **options) -> str:
     """Convert the given dictionary of options to a string of options for
     a LaTeX environment.
     """
@@ -11,6 +11,8 @@ def format_options(**options) -> str:
             if value:
                 opts.append(str(name))
         else:
+            if replace_underscores:
+                name = name.replace("_", " ")
             opts.append(f"{name}={value}")
 
     if opts:
@@ -66,4 +68,31 @@ def format_matrix(matrix: np.ndarray) -> str:
     elif np.ndim(matrix) == 2:
         return '\n'.join([format_vector(row) for row in matrix])
     else:
-        raise ValueError(f"Plotting {np.ndim(matrix)}-dimensional data is not supported.")
+        raise ValueError(f"Formatting {np.ndim(matrix)}-dimensional data is not supported.")
+
+
+def format_plot_command(
+        data: np.ndarray,
+        raw_options: str = "",
+        suffix: str = "",
+        plot3d: bool = False,
+        plotplus: bool = False,
+        label: str = None,
+        inline_label: bool = False,
+        labelopts: str = "") -> str:
+    """Return a plot command to plot the given data in pgfplots.
+    """
+    labelcmd = ""
+    if label:
+        if inline_label:
+            suffix += f"\\node{labelopts} {label}"
+        else:
+            labelcmd = f"\\addlegendentry{{{label}}}"
+    tablecmd = "table" if np.ndim(data) >= 1 else ""
+    return f"""
+\\addplot{'3' if plot3d else ''}{'+' if plotplus else ''}{raw_options}
+{tablecmd}{{%
+{format_matrix(data)}
+}}{suffix};
+{labelcmd}
+"""
