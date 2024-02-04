@@ -1,5 +1,5 @@
 <div align="center">
-    # Pykz
+    <h1>Pykz</h1>
     A Python library to generate tikz code.
 </div> 
 
