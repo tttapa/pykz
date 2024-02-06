@@ -23,5 +23,12 @@ class Environment(Tex):
     def set_option(self, name: str, value: str):
         self.options.set_option(name, value)
 
+    def update_option(self, name: str, inner_key: str, value: str):
+        suboption = self.options.get(name, Options())
+        if not isinstance(suboption, Options):
+            raise TypeError(f"Cannot update sub-options. Option {suboption} is a string.")
+        suboption.set_option(inner_key, value)
+        self.options[name] = suboption
+
     def set_options(self, **options):
         self.options.set_options(**options)

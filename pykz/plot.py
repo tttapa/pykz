@@ -1,5 +1,43 @@
 import numpy as np
-from .formatting import format_matrix
-from .commands import TikzCode
+from .commands.addplot import Addplot
+from .constants import MAX_NUMBER
 
 
+def remove_huge_nbs(arr):
+    mask = np.abs(arr) > MAX_NUMBER
+    arr[mask] = np.sign(arr[mask]) * np.inf
+    return arr
+
+
+def create_plot(x: np.ndarray, y: np.ndarray, label: str = None, inline_label: bool = False, **options) -> list[Addplot]:
+
+    if y is None:  # Plot index vs. x
+        if np.ndim(x) == 0:  # Constant
+            datasets = [x]
+        else:
+            datasets = (
+                np.hstack((np.arange(len(row))[:, np.newaxis],
+                           row[:, np.newaxis]))
+                for row in x
+            )
+    else:
+        datasets = (
+            np.hstack((x_row[:, np.newaxis], y_row[:, np.newaxis]))
+            for x_row, y_row in zip(np.atleast_2d(x), np.atleast_2d(y))
+        )
+
+    def iter_label():
+        if label is None:
+            yield None
+        elif isinstance(label, str):
+            while True:
+                yield label
+        else:
+            for lab in label:
+                yield lab
+            yield None
+
+    # Set large numbers to infinity because pgfplots doesn't handle them.
+    datasets = (remove_huge_nbs(a) for a in datasets)
+
+    return [Addplot(dataset, lab, inline_label=inline_label, **options) for lab, dataset in zip(iter_label(), datasets)]

@@ -1,6 +1,7 @@
 from .environments.tikzpicture import TikzPicture
 from .environments.axis import Axis
 from .commands.addplot import Addplot
+from .plot import create_plot
 import numpy as np
 from typing import Optional
 
@@ -75,7 +76,7 @@ def preview(fig: TikzPicture = None):
     fig.preview()
 
 
-def save(filename: str, fig: TikzPicture = None):
+def save(filename: str, fig: TikzPicture = None, standalone: bool = False):
     """Save the generated Tikz code to a file.
 
     If no figure is given, the active figure is selected.
@@ -90,6 +91,7 @@ def save(filename: str, fig: TikzPicture = None):
     fig = gcf() if fig is None else fig
     if fig is None:
         return
+    fig.standalone = standalone
     return fig.export(filename)
 
 
@@ -143,36 +145,28 @@ def ylim(limits: tuple[float]):
     ax.set_ylims(limits)
 
 
+def axhline(y: float, ax: Axis = None, **options) -> list[Addplot]:
+    """Plot a horizontal line at the provided `y` value.
+    """
+    return plot(y, ax, **options)
+
+
+def axvline(x: float, ax: Axis = None, **options) -> list[Addplot]:
+    """Plot a vertical line at the provided `x` value."""
+    # TODO: Think of ways to represent this allow axes dimensions to be updated afterwards.
+    ax = ax if ax is not None else __get_or_create_ax()
+    ymin, ymax = ax.get_ylims()
+    xes = np.array((x, x))
+    ys = np.array((ymin, ymax))
+    return plot(xes, ys, ax=ax, **options)
+
+
 def plot(x, y=None, ax: Axis = None, label: str | tuple[str] = None,
          inline_label: bool = False,
-         **options) -> Addplot:
+         **options) -> list[Addplot]:
 
     ax = ax if ax is not None else __get_or_create_ax()
-
-    if y is None:  # Plot index vs. x
-        datasets = (
-            np.hstack((np.arange(len(row))[:, np.newaxis],
-                       row[:, np.newaxis]))
-            for row in x
-        )
-    else:
-        datasets = (
-            np.hstack((x_row[:, np.newaxis], y_row[:, np.newaxis]))
-            for x_row, y_row in zip(np.atleast_2d(x), np.atleast_2d(y))
-        )
-
-    def iter_label():
-        if label is None:
-            yield None
-        elif isinstance(label, str):
-            while True:
-                yield label
-        else:
-            for lab in label:
-                yield lab
-            yield None
-
-    plot_commands = [Addplot(dataset, lab, inline_label=inline_label, **options) for lab, dataset in zip(iter_label(), datasets)]
+    plot_commands = create_plot(x, y, label, inline_label, **options)
     for plt in plot_commands:
         ax.add(plt)
     return plot_commands

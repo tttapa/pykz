@@ -1,7 +1,8 @@
 import numpy as np
+from .options import Options
 
 
-def format_options(replace_underscores=True, **options) -> str:
+def format_options(replace_underscores=True, with_brackets=True, **options) -> str:
     """Convert the given dictionary of options to a string of options for
     a LaTeX environment.
     """
@@ -10,6 +11,8 @@ def format_options(replace_underscores=True, **options) -> str:
         if isinstance(value, bool):
             if value:
                 opts.append(str(name))
+        elif isinstance(value, Options):
+            opts.append(f"{name}={{{format_options(with_brackets=False, **value)}}}")
         else:
             if replace_underscores:
                 name = name.replace("_", " ")
@@ -17,7 +20,7 @@ def format_options(replace_underscores=True, **options) -> str:
 
     if opts:
         options_str = ',\n'.join(opts)
-        return f"[{options_str}]"
+        return f"[{options_str}]" if with_brackets else options_str
     return ""
 
 

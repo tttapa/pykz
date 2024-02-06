@@ -1,15 +1,16 @@
-from .formatting import format_options
 from collections.abc import Mapping
+from collections import OrderedDict
 
 
 class Options(Mapping):
 
     def __init__(self, **options):
-        self._opt_dict = {key.replace("_", " "): value
-                          for (key, value) in options.items()
-                          if value is not None}
+        self._opt_dict = OrderedDict(**{key.replace("_", " "): value
+                                        for (key, value) in options.items()
+                                        if value is not None})
 
     def format(self) -> str:
+        from .formatting import format_options
         return format_options(**self._opt_dict)
 
     def set_option(self, name: str, value: str):

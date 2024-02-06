@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from enum import Enum
 from .. import environment as env
+from ..util import format_list
 
 
 @dataclass
@@ -92,6 +93,59 @@ class Axis(env.Environment):
     def set_zlims(self, lims: tuple[float]):
         (self.options["zmin"], self.options["zmax"]) = lims
 
+    def get_ylims(self) -> tuple:
+        return (self.options.get("ymin", -1), self.options.get("ymax", 1))
+
+    def center(self):
+        """Center the axis lines"""
+        self.set_option("axis lines", "center")
+
+    def set_axis_label_position(self, axis: str, position: str):
+        """Set label position of the given axis relative to the arrowhead. 
+        As a side-effect, it also centers the axes.
+
+        Arguments:
+            - axis [str]: "x", "y" or "z"
+            - positions [str]: "left", "right", "above", "below"
+        """
+        axis = axis.lower()
+        position = position.lower()
+        known_axes = ("x", "y", "z")
+        known_positions = ("left", "right", "above", "below")
+
+        if axis not in known_axes:
+            raise ValueError(f"Expected axis in {known_axes}. Got {axis}.")
+
+        if position not in known_positions:
+            raise ValueError(f"Expected position in {known_positions}. Got {position}.")
+
+        self.center()
+        anchors = dict(
+            above="south",
+            below="north",
+            left="east",
+            right="west"
+        )
+
+        self.update_option(f"{axis} label style", "anchor", anchors[position])
+
+    def boxed(self):
+        self.set_option("axis lines", "box")
+
+    def _set_ticks(self, values: tuple[float], labels: tuple[str], direction: str):
+        self.set_option(f"{direction}tick", f"{{{format_list(values)}}}")
+        if labels is not None:
+            self.set_option(f"{direction}ticklabels", f"{{{format_list(labels)}}}")
+
+    def set_yticks(self, values: tuple[float], labels: tuple[str] = None):
+        self._set_ticks(values, labels, "y")
+
+    def set_xticks(self, values: tuple[float], labels: tuple[str] = None):
+        self._set_ticks(values, labels, "x")
+
+    def set_zticks(self, values: tuple[float], labels: tuple[str] = None):
+        self._set_ticks(values, labels, "z")
+
     def set_xmax(self, v):
         self.options["xmax"] = v
 
@@ -109,4 +163,3 @@ class Axis(env.Environment):
 
     def set_zmin(self, v):
         self.options["zmin"] = v
-
