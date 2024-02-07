@@ -64,6 +64,8 @@ def format_matrix(matrix: np.ndarray) -> str:
     Returns:
         str: Formatted table
     """
+    if matrix is None:
+        return ""
     if np.ndim(matrix) == 0:
         return f"{float(matrix):2.16f}"
     if np.ndim(matrix) == 1:
@@ -88,10 +90,10 @@ def format_plot_command(
     labelcmd = ""
     if label:
         if inline_label:
-            suffix += f"\\node{labelopts} {label}"
+            suffix += f"node{labelopts} {{{label}}}"
         else:
             labelcmd = f"\\addlegendentry{{{label}}}"
-    tablecmd = "table" if np.ndim(data) >= 1 else ""
+    tablecmd = "table" if (data is not None) and (np.ndim(data) >= 1) else ""
     return f"""
 \\addplot{'3' if plot3d else ''}{'+' if plotplus else ''}{raw_options}
 {tablecmd}{{%

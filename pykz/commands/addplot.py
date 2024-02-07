@@ -17,7 +17,9 @@ class __AddplotBase(Command):
         self.label = label
         self._plot3d = plot3d
         self._inline_label = inline_label
-        self._label_opts = Options()
+        self._label_opts = Options(
+            pos=0.7, above=True
+        )
         super().__init__("addplot", **options)
 
     def customize_label(self, **options):

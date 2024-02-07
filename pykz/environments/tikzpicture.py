@@ -1,5 +1,7 @@
 from .. import formatting
+from collections import OrderedDict
 from ..tikzcode import TikzCode
+from ..options import Options
 from ..command import Command
 from .. import environment as env
 from . import axis as ax
@@ -11,23 +13,53 @@ class TikzPicture(env.Environment):
         super().__init__("tikzpicture", **options)
         self.standalone = standalone
         self.preamble = TikzCode()
+        self._styles: OrderedDict[str, Options] = OrderedDict()
 
     def add_preamble_line(self, line: str):
         self.preamble.add_line(line)
 
+    def remove_style(self, name: str):
+        try:
+            self._styles.pop(name)
+        except KeyError:
+            raise UserWarning("Tried to remove undefined style.")
+
+    def define_style(self, name: str, **options):
+        """Define (or update if it already exists) a style with the given name."""
+        available_options = self._styles.get(name, Options())
+        available_options.set_options(**options)
+        self._styles[name] = available_options
+
     def add_axis(self, axis: ax.Axis):
         self.add(axis)
         self.preamble.usepackage("pgfplots")
-        self.preamble.add_line(Command("pgfplotsset", "compat=1.18"))
+        # self.preamble.add_line(Command("pgfplotsset", "compat=1.18"))
+
+    def generate_preamble(self) -> str:
+        preamble = self.preamble.get_code()
+        for content in self.content.lines:
+            if isinstance(content, env.Environment):
+                preamble += (content.requirements.get_code())
+        return preamble
+
+    def format_styles(self) -> str:
+        if not self._styles:
+            return ""
+        styledefs = ",\n".join([f"{name}/.style = {{{definition.format(False)}}}"
+                                for name, definition in self._styles.items()]) + "\n"
+        return f"\\tikzset{{{styledefs}}}\n"
 
     def get_code(self) -> str:
         preamble = ""
         if self.standalone:
             preamble += "\\documentclass[tikz]{standalone}\n"
-            preamble += self.preamble.get_code()
+            preamble += self.generate_preamble()
         else:
-            preamble = ""
+            preamble += "% Add the following lines in the preamble: \n"
+            for line in self.generate_preamble().splitlines():
+                preamble += f"%{line}\n"
 
+        preamble += self.format_styles()
         content = self.content.get_code()
         content = formatting.wrap_env("tikzpicture", content)
         if self.standalone:
@@ -51,4 +83,8 @@ class TikzPicture(env.Environment):
 
     def preview(self):
         from pykz.io import preview_latex_doc
-        return preview_latex_doc(self.get_code())
+        is_standalone = self.standalone
+        self.standalone = True
+        prev = preview_latex_doc(self.get_code())
+        self.standalone = is_standalone  # Reset to initial state
+        return prev

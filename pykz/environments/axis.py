@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from enum import Enum
 from .. import environment as env
+from ..options import Options
 from ..util import format_list
 
 
@@ -73,6 +74,9 @@ class Axis(env.Environment):
         arguments = {key.replace("_", " "): value for (key, value) in arguments.items()
                      if value is not None
                      }
+        arguments["axis line style"] = Options(
+            **{"shorten >": "-10pt", "shorten <": "-10pt"}
+        )
         super().__init__("axis", **arguments, **extra)
 
     def set_xlabel(self, label: str):

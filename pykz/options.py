@@ -9,9 +9,9 @@ class Options(Mapping):
                                         for (key, value) in options.items()
                                         if value is not None})
 
-    def format(self) -> str:
+    def format(self, include_brackets: bool = True) -> str:
         from .formatting import format_options
-        return format_options(**self._opt_dict)
+        return format_options(with_brackets=include_brackets, **self._opt_dict)
 
     def set_option(self, name: str, value: str):
         self._opt_dict[name.replace("_", " ")] = value

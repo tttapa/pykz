@@ -13,6 +13,7 @@ class Environment(Tex):
         self.name = name
         self.options = Options(**options)
         self.content = TikzCode()
+        self.requirements = TikzCode()  # Tikz code that should be added to the preamble
 
     def add(self, content: Union[Tex, str]):
         self.content.add_line(content)
@@ -32,3 +33,6 @@ class Environment(Tex):
 
     def set_options(self, **options):
         self.options.set_options(**options)
+
+    def add_requirement(self, req: str | Tex):
+        self.requirements.add_line(req)
