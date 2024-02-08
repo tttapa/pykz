@@ -74,13 +74,34 @@ class Axis(env.Environment):
         arguments = {key.replace("_", " "): value for (key, value) in arguments.items()
                      if value is not None
                      }
-        arguments["axis line style"] = Options(
-            **{"shorten >": "-10pt", "shorten <": "-10pt"}
-        )
         super().__init__("axis", **arguments, **extra)
 
     def set_xlabel(self, label: str):
         self.options.set_option("xlabel", label)
+
+    def enlarge_limits(self, amount: float = 0.05, direction: str = None):
+        """Enlarge the range of axes (only x or y if `direction` is provided).
+
+        Adds the `enlarge x limits` option.
+
+        Arguments:
+            - amount: fraction by which to increase the size of the axes. The final range will be `(1 + amount) * original_length`
+            - direction: "x" | "y". If provided, only apply to the corresponding axis.
+        """
+        allowed_dirs = ["x", "y", None]
+        if direction not in allowed_dirs:
+            raise ValueError(f"Expected direction to belong to {allowed_dirs}. Got {direction}")
+
+        if direction:
+            self.set_option(f"enlarge {direction} limits", amount)
+        else:
+            self.set_option("enlarge x limits", amount)
+            self.set_option("enlarge y limits", amount)
+
+    # def extend_axis_lines(self, amount: int | str = "10pt"):
+    #     self.set_option("axis line style", Options(
+    #         **{"shorten >": "-10pt", "shorten <": "-10pt"}
+    #     ))
 
     def set_ylabel(self, label: str):
         self.options.set_option("ylabel", label)
@@ -105,7 +126,7 @@ class Axis(env.Environment):
         self.set_option("axis lines", "center")
 
     def set_axis_label_position(self, axis: str, position: str):
-        """Set label position of the given axis relative to the arrowhead. 
+        """Set label position of the given axis relative to the arrowhead.
         As a side-effect, it also centers the axes.
 
         Arguments:
