@@ -70,11 +70,15 @@ def open_pdf_file(file_path: str):
 def preview_latex_doc(code: str) -> str:
     pdf_path = build_latex_code(code)
     print(pdf_path)
-    open_pdf_file(pdf_path)
+
     try:
-        os.remove(pdf_path)
-    except FileNotFoundError():
-        ...
+        open_pdf_file(pdf_path)
+    except Exception as e:
+        try:
+            os.remove(pdf_path)
+        except FileNotFoundError():
+            ...
+        raise e
 
 
 if __name__ == "__main__":
