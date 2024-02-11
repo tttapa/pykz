@@ -1,8 +1,9 @@
 from ..command import Command
+from ..label import Label
 from ..tikzcode import Tex
 from ..formatting import format_vector
+# from ..options import Options
 import numpy as np
-from itertools import product
 
 
 class Node(Command):
@@ -16,21 +17,30 @@ class Node(Command):
                  **options,
                  ):
         self.set_position(position)
-        self.set_label_loc(label_loc)
         self.axis_coords = axis_coords
-        self.label = label
+        self.label = Label(label)
+        self.set_label_loc(label_loc)
+        # self._label_opts = Options()
         self.name = name
-        super().__init__("node", label, **options)
+        super().__init__("node", label)
+        self.set_options(**options)
+
+    def customize_label(self, **options):
+        """Customize the options of the inline label"""
+        self.label.set_options(**options)
+
+    # def format_label(self) -> str:
 
     def set_label_loc(self, loc: str):
-        topbot = ("", "above", "below")
-        leftright = ("", "left", "right")
-        allowed = [" ".join([vert, hor]).strip() for vert, hor in product(topbot, leftright)]
+        self.label.set_location(loc)
+        # topbot = ("", "above", "below")
+        # leftright = ("", "left", "right")
+        # allowed = [" ".join([vert, hor]).strip() for vert, hor in product(topbot, leftright)]
 
-        if loc not in allowed:
-            raise ValueError(f"Label location {loc} is not a valid position. Expected one of `{allowed}`.")
+        # if loc not in allowed:
+        #     raise ValueError(f"Label location {loc} is not a valid position. Expected one of `{allowed}`.")
 
-        self._label_loc = loc
+        # self._label_loc = loc
 
     def set_position(self, position: str | Tex | np.ndarray):
         if isinstance(position, str):
@@ -62,8 +72,9 @@ class Node(Command):
         return middle
 
     def get_code(self):
-        if self._label_loc is not None:
+        # if self._label_loc is not None:
+        if len(self.label.options) > 0:
             self._arguments.clear()  # Remove the label as an argument.
             self.add_argument("")    # Replace it with the empty string, because a node needs a (potentially empty) label text.
-            self.set_option("label", f"{self._label_loc}:{{{self.label}}}")
+            self.set_option("label", self.label.get_code())
         return super().get_code()

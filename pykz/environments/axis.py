@@ -77,7 +77,7 @@ class Axis(env.Environment):
         super().__init__("axis", **arguments, **extra)
 
     def set_xlabel(self, label: str):
-        self.options.set_option("xlabel", label)
+        self.set_option("xlabel", label)
 
     def enlarge_limits(self, amount: float = 0.05, direction: str = None):
         """Enlarge the range of axes (only x or y if `direction` is provided).

@@ -39,3 +39,26 @@ class Options(Mapping):
 
     def __dict__(self):
         return self._opt_dict
+
+
+class OptionsMixin:
+
+    @property
+    def options(self) -> Options:
+        return self._options
+
+    def init_options(self, **options):
+        self._options = Options(**options)
+
+    def set_option(self, key: str, value: str):
+        self._options.set_option(key, value)
+
+    def set_options(self, **options):
+        self._options.set_options(**options)
+
+    def update_option(self, name: str, inner_key: str, value: str):
+        suboption = self.options.get(name, Options())
+        if not isinstance(suboption, Options):
+            raise TypeError(f"Cannot update sub-options. Option {suboption} is a string.")
+        suboption.set_option(inner_key, value)
+        self.options[name] = suboption

@@ -28,11 +28,12 @@ class __AddplotBase(Command):
 
     def get_code(self) -> str:
         return format_plot_command(self.data,
-                                   raw_options=self._options.format(),
+                                   raw_options=self.options.format(),
                                    plot3d=self._plot3d,
                                    label=self.label,
                                    inline_label=self._inline_label,
-                                   labelopts=self._label_opts.format()
+                                   labelopts=self._label_opts.format(),
+                                   plotplus=False
                                    )
 
 

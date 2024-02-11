@@ -2,7 +2,7 @@ from .. import formatting
 from collections import OrderedDict
 from ..tikzcode import TikzCode
 from ..options import Options
-from ..command import Command
+# from ..command import Command
 from .. import environment as env
 from . import axis as ax
 
