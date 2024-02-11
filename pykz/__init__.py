@@ -51,6 +51,7 @@ def __get_or_create_ax() -> Axis:
 
 def figure(standalone: bool = True, **options) -> TikzPicture:
     pic = TikzPicture(standalone, **options)
+    WorkSpace.sca(None)
     WorkSpace.scf(pic)
     return pic
 
@@ -156,7 +157,7 @@ def axhline(y: float, ax: Axis = None, **options) -> list[Addplot]:
 
 
 def point(coordinates: np.ndarray = None,
-          label: str = None,
+          label: str = "",
           name: str = None,
           axis_coords: bool = True,
           label_loc: str = "above",
@@ -203,10 +204,11 @@ def node(coordinates: np.ndarray = None,
     if axis is None and axis_coords:
         axis = __get_or_create_ax()
         axis.add(node)
-        return
+        return node
 
     fig = fig if fig is not None else __get_or_create_fig()
     fig.add(node)
+    return node
 
 
 def fill_between(x: np.ndarray, y1: np.ndarray, y2: np.ndarray, *,
