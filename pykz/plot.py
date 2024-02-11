@@ -18,7 +18,7 @@ def create_plot(x: np.ndarray, y: np.ndarray, label: str = None, inline_label: b
             datasets = (
                 np.hstack((np.arange(len(row))[:, np.newaxis],
                            row[:, np.newaxis]))
-                for row in x
+                for row in np.atleast_2d(x)
             )
     else:
         datasets = (
@@ -37,7 +37,14 @@ def create_plot(x: np.ndarray, y: np.ndarray, label: str = None, inline_label: b
                 yield lab
             yield None
 
+    def forget_plot(label):
+        if (label is None or inline_label) \
+                and ("forget_plot" not in options) \
+                and ("forget plot" not in options):
+            return {"forget plot": True}
+        return {}
+
     # Set large numbers to infinity because pgfplots doesn't handle them.
     datasets = (remove_huge_nbs(a) for a in datasets)
 
-    return [Addplot(dataset, lab, inline_label=inline_label, **options) for lab, dataset in zip(iter_label(), datasets)]
+    return [Addplot(dataset, lab, inline_label=inline_label, **forget_plot(lab), **options) for lab, dataset in zip(iter_label(), datasets)]
