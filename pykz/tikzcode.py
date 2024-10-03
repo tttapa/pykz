@@ -38,6 +38,10 @@ class TikzCode:
         """Define a new color using the ``\\colorlet`` command of xcolor."""
         return self.__cmd(f"\\colorlet{{{colorname}}}{{{colordef}}}")
 
+    def definecolor(self, colorname: str, kind: str, definition: str) -> "TikzCode":
+        """Define a new color using the ``\\definecolor`` command."""
+        return self.__cmd(f"\\definecolor{{{colorname}}}{{{kind}}}{{{definition}}}")
+
     def usepackage(self, package: str, **options) -> "TikzCode":
         return self.__cmd(f"\\usepackage{formatting.format_options(**options)}{{{package}}}")
 
