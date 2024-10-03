@@ -1,7 +1,6 @@
 from dataclasses import dataclass
 from enum import Enum
 from .. import environment as env
-from ..options import Options
 from ..util import format_list
 
 
