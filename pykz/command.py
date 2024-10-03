@@ -12,6 +12,8 @@ class Command(Tex, OptionsMixin):
         for argument in arguments:
             self.add_argument(argument)
         self.init_options(**options)
+        self._endline = True
+        self._escape = True
 
     def add_argument(self, argument: str | Tex):
         if isinstance(argument, str):
@@ -24,15 +26,15 @@ class Command(Tex, OptionsMixin):
     def _format_post(self) -> str:
         return ""
 
-    def get_code(self) -> str:
-        options_str = self.options.format()
+    def _format_arguments(self) -> str:
         argument_str = ""
         for argument in self._arguments:
             argument_str += f"{{{argument.get_code()}}}"
-        return f"\\{self.cmd_name}{options_str}{self._format_middle()}{argument_str}{self._format_post()};"
+        return argument_str
 
-    # def set_option(self, key: str, value: str):
-    #     self._options.set_option(key, value)
-
-    # def set_options(self, **opts):
-    #     self._options.set_options(**opts)
+    def get_code(self) -> str:
+        options_str = self.options.format()
+        argument_str = self._format_arguments()
+        end = ";" if self._endline else ""
+        start = "\\" if self._escape else ""
+        return f"{start}{self.cmd_name}{options_str}{self._format_middle()}{argument_str}{self._format_post()}{end}"

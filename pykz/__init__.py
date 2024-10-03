@@ -5,6 +5,8 @@ from .environments.axis import Axis
 from .commands.addplot import Addplot
 from .commands.fillbetween import FillBetween
 from .commands.node import Node
+from .commands.draw import Draw
+from .commands.circle import Circle
 from .plot import create_plot
 import numpy as np
 from typing import Optional
@@ -62,6 +64,25 @@ def ax() -> Axis:
     WorkSpace.sca(ax)
     fig.add_axis(ax)
     return ax
+
+
+def dumps(fig: TikzPicture = None) -> str:
+    """
+    Dump the tex-code of the current figure to a string.
+
+    If no figure is given, the active figure is selected,
+    and the contents of this figure are returned.
+
+    :param fig: Figure to codegen 
+
+    Returns
+    -------
+    str
+    """
+    fig = gcf() if fig is None else fig
+    if fig is None:
+        return ""
+    return fig.get_code()
 
 
 def preview(fig: TikzPicture = None):
@@ -243,6 +264,40 @@ def axvline(x: float, ax: Axis = None, **options) -> list[Addplot]:
     xes = np.array((x, x))
     ys = np.array((ymin, ymax))
     return plot(xes, ys, ax=ax, **options)
+
+
+Point = np.ndarray | str | Node
+
+
+def __create_draw(connector_type: str, points: list[Point], **options) -> Draw:
+    from pykz.commands import Connector
+    connector = Connector(connector_type)
+    draw = Draw(points, connector, **options)
+    return draw
+
+
+def __add_draw_command(draw: Draw) -> Draw:
+    fig = __get_or_create_fig()
+    fig.add(draw)
+    return draw
+
+
+def __create_and_add_draw(connector_type: str, points: list[Point], **options):
+    draw = __create_draw(connector_type, points, **options)
+    return __add_draw_command(draw)
+
+
+def rectangle(c1: Point, c2: Point, **options) -> Draw:
+    return __create_and_add_draw("rectangle", [c1, c2], **options)
+
+
+def circle(center: Point, radius: float, **options) -> Circle:
+    circle = Circle(center, radius, **options)
+    return __add_draw_command(circle)
+
+
+def line(points: list[Point], **options) -> Draw:
+    return __create_and_add_draw("--", points, **options)
 
 
 def plot(x, y=None, ax: Axis = None, label: str | tuple[str] = None,

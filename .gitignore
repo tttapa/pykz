@@ -6,3 +6,4 @@ test-basic-plot.aux
 **/*.pyc
 pykz/__pycache__ tests/__pycache__
 test-basic-plot.pdf
+.venv
