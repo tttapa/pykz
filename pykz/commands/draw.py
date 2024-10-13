@@ -15,8 +15,7 @@ class Draw(Command):
                  ):
         self.points = points
         self._connector = connector
-        super().__init__("draw")
-        self.set_options(**options)
+        super().__init__("draw", **options)
 
     def _format_pt(self, pt: np.ndarray | str | Node) -> str:
         if isinstance(pt, Node):

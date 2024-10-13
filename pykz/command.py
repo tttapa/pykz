@@ -26,9 +26,13 @@ class Command(Tex, OptionsMixin):
     def _format_post(self) -> str:
         return ""
 
+    @property
+    def arguments(self) -> list[Tex]:
+        return self._arguments
+
     def _format_arguments(self) -> str:
         argument_str = ""
-        for argument in self._arguments:
+        for argument in self.arguments:
             argument_str += f"{{{argument.get_code()}}}"
         return argument_str
 

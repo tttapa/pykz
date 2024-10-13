@@ -19,7 +19,8 @@ class Node(Command):
         self.set_position(position)
         self.axis_coords = axis_coords
         self.label = Label(label)
-        self.set_label_loc(label_loc)
+        if label_loc:
+            self.set_label_loc(label_loc)
         # self._label_opts = Options()
         self.name = name
         super().__init__("node", label)
@@ -33,14 +34,6 @@ class Node(Command):
 
     def set_label_loc(self, loc: str):
         self.label.set_location(loc)
-        # topbot = ("", "above", "below")
-        # leftright = ("", "left", "right")
-        # allowed = [" ".join([vert, hor]).strip() for vert, hor in product(topbot, leftright)]
-
-        # if loc not in allowed:
-        #     raise ValueError(f"Label location {loc} is not a valid position. Expected one of `{allowed}`.")
-
-        # self._label_loc = loc
 
     def set_position(self, position: str | Tex | np.ndarray):
         if isinstance(position, str):

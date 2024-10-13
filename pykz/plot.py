@@ -13,7 +13,7 @@ def create_plot(x: np.ndarray, y: np.ndarray, label: str = None, inline_label: b
 
     if y is None:  # Plot index vs. x
         if np.ndim(x) == 0:  # Constant
-            datasets = [x]
+            datasets = [np.array(x)]
         else:
             datasets = (
                 np.hstack((np.arange(len(row))[:, np.newaxis],

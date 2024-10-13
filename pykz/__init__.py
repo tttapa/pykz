@@ -73,7 +73,7 @@ def dumps(fig: TikzPicture = None) -> str:
     If no figure is given, the active figure is selected,
     and the contents of this figure are returned.
 
-    :param fig: Figure to codegen 
+    :param fig: Figure to codegen
 
     Returns
     -------
@@ -131,6 +131,11 @@ def xlabel(lab: str):
     ax.set_xlabel(lab)
 
 
+def define_style(name: str, fig: TikzPicture = None, **options):
+    fig = __get_or_create_fig() if fig is None else fig
+    fig.set_style(name, **options)
+
+
 def ylabel(lab: str):
     """Set the `y` label of the current axis.
 
@@ -177,10 +182,15 @@ def axhline(y: float, ax: Axis = None, **options) -> list[Addplot]:
     return plot(y, ax, **options)
 
 
+def scale(scale: float, fig: TikzPicture = None):
+    fig = gcf() if fig is None else fig
+    fig.set_option("scale", scale)
+
+
 def point(coordinates: np.ndarray = None,
           label: str = "",
           name: str = None,
-          axis_coords: bool = True,
+          axis_coords: bool = None,
           label_loc: str = "above",
           size: int | str = "1pt",
           axis: Axis = None,
@@ -202,7 +212,7 @@ def point(coordinates: np.ndarray = None,
 def node(coordinates: np.ndarray = None,
          label: str = None,
          name: str = None,
-         axis_coords: bool = True,
+         axis_coords: bool = None,
          label_loc: str = None,
          axis: Axis = None,
          fig: TikzPicture = None,
@@ -221,6 +231,11 @@ def node(coordinates: np.ndarray = None,
         - label_loc = "above" | "below" | "right" | "left" or a combination (starting with the vertical position),
         e.g., "above right". By default, it is None, and the label is added at the location of the node itself.
     """
+    if axis_coords is None:
+        axis_coords = False if axis is None else True
+
+    if not label:
+        label_loc = None
     node = Node(label, name, coordinates, label_loc, axis_coords, **options)
     if axis is None and axis_coords:
         axis = __get_or_create_ax()
@@ -250,6 +265,9 @@ def fill_between(x: np.ndarray, y1: np.ndarray, y2: np.ndarray, *,
     fill_plot = FillBetween("first", "second", **fill_options)
     ax.add(fill_plot)
     return fill_plot
+
+
+# def quiver(x: np.ndarray, y: np.ndarray, dx: np.ndarray, dy: np.ndarray, **options) -> Quiver
 
 
 def axvline(x: float, ax: Axis = None, **options) -> list[Addplot]:
@@ -292,8 +310,23 @@ def circle(center: Point, radius: float, **options) -> Circle:
     return __add_draw_command(circle)
 
 
-def line(points: list[Point], **options) -> Draw:
-    return __create_and_add_draw("--", points, **options)
+def line(points: list[Point], connection: str = "--", **options) -> Draw:
+    return __create_and_add_draw(connection, points, **options)
+
+
+def arrow(points: list[Point], forward: bool = True, backward: bool = False,
+          arrowhead: str = None, **options) -> Draw:
+    bw = "<" if backward else ""
+    fw = ">" if forward else ""
+    arrow = bw + "-" + fw if (bw or fw) else "--"
+    arrow_opts = {arrow: True}
+    if arrowhead is not None:
+        if forward:
+            arrow_opts[">"] = arrowhead
+        if backward:
+            arrow_opts["<"] = arrowhead
+    options.update(arrow_opts)
+    return line(points, **options)
 
 
 def plot(x, y=None, ax: Axis = None, label: str | tuple[str] = None,

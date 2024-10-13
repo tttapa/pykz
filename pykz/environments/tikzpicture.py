@@ -1,7 +1,6 @@
 from .. import formatting
-from collections import OrderedDict
 from ..tikzcode import TikzCode
-from ..options import Options
+from ..commands.tikzset import Tikzset
 # from ..command import Command
 from .. import environment as env
 from . import axis as ax
@@ -13,22 +12,22 @@ class TikzPicture(env.Environment):
         super().__init__("tikzpicture", **options)
         self.standalone = standalone
         self.preamble = TikzCode()
-        self._styles: OrderedDict[str, Options] = OrderedDict()
+        self._styles = Tikzset()
+        # self._styles: OrderedDict[str, Options] = OrderedDict()
 
     def add_preamble_line(self, line: str):
         self.preamble.add_line(line)
 
     def remove_style(self, name: str):
-        try:
-            self._styles.pop(name)
-        except KeyError:
-            raise UserWarning("Tried to remove undefined style.")
+        self._styles.remove_style(name)
+
+    def set_style(self, name: str, **options):
+        self._styles.set_style(name, **options)
 
     def define_style(self, name: str, **options):
         """Define (or update if it already exists) a style with the given name."""
-        available_options = self._styles.get(name, Options())
-        available_options.set_options(**options)
-        self._styles[name] = available_options
+        DeprecationWarning("`define_style` is deprecated. Use `set_style` instead.")
+        self.set_style(name, **options)
 
     def add_axis(self, axis: ax.Axis):
         self.add(axis)
@@ -45,9 +44,7 @@ class TikzPicture(env.Environment):
     def format_styles(self) -> str:
         if not self._styles:
             return ""
-        styledefs = ",\n".join([f"{name}/.style = {{{definition.format(False)}}}"
-                                for name, definition in self._styles.items()]) + "\n"
-        return f"\\tikzset{{{styledefs}}}\n"
+        return self._styles.get_code() + "\n"
 
     def get_code(self) -> str:
         preamble = ""
@@ -61,7 +58,7 @@ class TikzPicture(env.Environment):
 
         preamble += self.format_styles()
         content = self.content.get_code()
-        content = formatting.wrap_env("tikzpicture", content)
+        content = formatting.wrap_env("tikzpicture", content, **self.options)
         if self.standalone:
             content = formatting.wrap_env("document", content)
 
