@@ -9,7 +9,7 @@ y = np.sin(x)
 pykz.plot(x, y)
 
 # (Optional) save the tikz code to a file.
-pykz.save("test-basic-plot.tex")
+pykz.save("test-basic-plot.tex", standalone=True)
 
 # Save the Tikz code to a temporary file, compile it, and open the pdf in the default viewer.
 pykz.preview()
