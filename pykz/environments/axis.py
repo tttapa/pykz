@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from enum import Enum
-from .. import environment as env
+from ..environment import Environment
 from ..util import format_list
 
 
@@ -31,7 +31,7 @@ class Grid(Enum):
     none = "none"
 
 
-class Axis(env.Environment):
+class Axis(Environment):
 
     def __init__(self,
                  xlabel: str = None,

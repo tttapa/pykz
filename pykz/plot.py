@@ -1,5 +1,5 @@
 import numpy as np
-from .commands.addplot import Addplot
+from .commands.addplot import Addplot, Addplot3d
 from .constants import MAX_NUMBER
 
 
@@ -9,7 +9,8 @@ def remove_huge_nbs(arr):
     return arr
 
 
-def create_plot(x: np.ndarray, y: np.ndarray, label: str = None, inline_label: bool = False, **options) -> list[Addplot]:
+def create_plot(x: np.ndarray, y: np.ndarray, z: np.ndarray, label: str = None, inline_label: bool = False, **options) -> list[Addplot]:
+    plot3d = False
 
     if y is None:  # Plot index vs. x
         if np.ndim(x) == 0:  # Constant
@@ -21,10 +22,17 @@ def create_plot(x: np.ndarray, y: np.ndarray, label: str = None, inline_label: b
                 for row in np.atleast_2d(x)
             )
     else:
-        datasets = (
-            np.hstack((x_row[:, np.newaxis], y_row[:, np.newaxis]))
-            for x_row, y_row in zip(np.atleast_2d(x), np.atleast_2d(y))
-        )
+        if z is None:
+            datasets = (
+                np.hstack((x_row[:, np.newaxis], y_row[:, np.newaxis]))
+                for x_row, y_row in zip(np.atleast_2d(x), np.atleast_2d(y))
+            )
+        else:
+            plot3d = True
+            datasets = (
+                np.hstack((x_row[:, np.newaxis], y_row[:, np.newaxis], z_row[:, np.newaxis]))
+                for x_row, y_row, z_row in zip(np.atleast_2d(x), np.atleast_2d(y), np.atleast_2d(z))
+            )
 
     def iter_label():
         if label is None:
@@ -47,4 +55,6 @@ def create_plot(x: np.ndarray, y: np.ndarray, label: str = None, inline_label: b
     # Set large numbers to infinity because pgfplots doesn't handle them.
     datasets = (remove_huge_nbs(a) for a in datasets)
 
-    return [Addplot(dataset, lab, inline_label=inline_label, **forget_plot(lab), **options) for lab, dataset in zip(iter_label(), datasets)]
+    constructor = Addplot3d if plot3d else Addplot
+
+    return [constructor(dataset, lab, inline_label=inline_label, **forget_plot(lab), **options) for lab, dataset in zip(iter_label(), datasets)]

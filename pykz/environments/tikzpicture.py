@@ -29,7 +29,8 @@ class TikzPicture(env.Environment):
         DeprecationWarning("`define_style` is deprecated. Use `set_style` instead.")
         self.set_style(name, **options)
 
-    def add_axis(self, axis: ax.Axis):
+    def add_axis(self, axis: ax.Axis = None):
+        axis = ax.Axis() if axis is None else axis
         self.add(axis)
         self.preamble.usepackage("pgfplots")
         # self.preamble.add_line(Command("pgfplotsset", "compat=1.18"))
@@ -49,7 +50,7 @@ class TikzPicture(env.Environment):
     def get_code(self) -> str:
         preamble = ""
         if self.standalone:
-            preamble += "\\documentclass[tikz]{standalone}\n"
+            preamble += "\\documentclass[tikz, margin=5]{standalone}\n"
             preamble += self.generate_preamble()
         else:
             preamble += "% Add the following lines in the preamble: \n"
