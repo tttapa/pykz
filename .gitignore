@@ -7,3 +7,5 @@ test-basic-plot.aux
 pykz/__pycache__ tests/__pycache__
 test-basic-plot.pdf
 .venv
+examples/basics/DoE.py
+dist
