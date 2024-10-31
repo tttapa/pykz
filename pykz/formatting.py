@@ -1,6 +1,11 @@
+from __future__ import annotations
+
 import numpy as np
 from .options import Options
-from .label import Label
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from .label import Label
 
 
 def format_options(replace_underscores=True, with_brackets=True, **options) -> str:
@@ -65,6 +70,8 @@ def format_matrix(matrix: np.ndarray) -> str:
     Returns:
         str: Formatted table
     """
+    if isinstance(matrix, str):
+        return matrix
     if matrix is None:
         return ""
     if np.ndim(matrix) == 0:
@@ -83,7 +90,7 @@ def format_plot_command(
         suffix: str = "",
         plot3d: bool = False,
         plotplus: bool = False,
-        label: Label = None,
+        label: "Label" = None,
         inline_label: bool = False,
         labelopts: str = "") -> str:
     """Return a plot command to plot the given data in pgfplots.

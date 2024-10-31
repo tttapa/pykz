@@ -9,3 +9,6 @@ test-basic-plot.pdf
 .venv
 examples/basics/DoE.py
 dist
+*.pdf
+*.aux 
+*.log
