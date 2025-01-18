@@ -23,3 +23,6 @@ class Environment(Tex, OptionsMixin):
 
     def add_requirement(self, req: str | Tex):
         self.requirements.add_line(req)
+
+    def requires_package(self, package_name: str, **options):
+        self.requirements.usepackage(package_name, **options)
