@@ -1,3 +1,10 @@
+"""
+Directly using Tikz
+=====================
+
+Directly use Tikz functionality, without pgfplots.
+"""
+
 import pykz
 
 
@@ -12,4 +19,4 @@ print(pykz.dumps())
 pykz.save("circles.tex", standalone=True)
 
 # Save the Tikz code to a temporary file, compile it, and open the pdf in the default viewer.
-pykz.preview()
+# pykz.preview()

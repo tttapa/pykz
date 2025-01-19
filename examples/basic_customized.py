@@ -1,4 +1,8 @@
-"""Example showing some basic customization."""
+"""
+Basic customization
+=====================
+Example showing some basic customization in standard plots.
+"""
 
 import numpy as np
 import pykz
@@ -10,4 +14,4 @@ y2 = np.cos(x)
 pykz.plot(x, y, color="black", label="sine function")
 pykz.plot(x, y2, color="blue", label="cosine function")
 
-pykz.preview()
+# pykz.preview()

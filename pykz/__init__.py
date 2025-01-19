@@ -27,6 +27,7 @@ from .api import (
     arrow,
     plot,
     scatter,
-    point
+    point,
 )
 from .environments.axis import Grid, Axis, AxisMode, AxisDir, View
+from . import io

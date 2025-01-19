@@ -34,7 +34,7 @@ def build_latex_file(path: str) -> str:
                        check=True)
         print("Pdflatex done!")
     except FileNotFoundError:
-        raise PDFlatexNotFoundError("pdflatex command not found. Please make sure it is installed and accessible in the system's PATH.")
+        raise PDFlatexNotFoundError(f"pdflatex command not found when trying to compile {path}. Please make sure it is installed and accessible in the system's PATH.")
     except subprocess.CalledProcessError as e:
         error_message = f"{e.stdout.decode('UTF-8')}\n\nCompilation failed with the error above ☝️ "
         raise CompilationError(error_message)
