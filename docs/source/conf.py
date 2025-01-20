@@ -23,7 +23,6 @@ extensions = [
     'sphinx.ext.napoleon',
     'sphinx.ext.viewcode',
     'sphinx.ext.githubpages',
-    'sphinx.ext.autosummary',
     'myst_parser',
     'sphinx_gallery.gen_gallery',
     "sphinx_codeautolink",
@@ -64,7 +63,7 @@ def pdf_scraper(block, block_vars, gallery_conf):
                                         dpi=500,
                                         fmt="png")
             assert os.path.isfile(this_image_path)
-            # shutil.move(png, this_image_path)
+            shutil.move(pdf, this_image_path.replace("png", "pdf"))
     # Use the `figure_rst` helper function to generate reST for image files
     return figure_rst(image_names, gallery_conf['src_dir'])
 
