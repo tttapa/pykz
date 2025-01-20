@@ -39,7 +39,7 @@ jobs:
       run: |
         cd docs
         make html
-        touch _build/html/.nojekyll  # prevent GitHub Pages from ignoring files that begin with an underscore
+        touch build/html/.nojekyll  # prevent GitHub Pages from ignoring files that begin with an underscore
 
     - name: Deploy to GitHub Pages
       if: github.event_name != 'pull_request'  # only deploy on push to main, not on PRs
