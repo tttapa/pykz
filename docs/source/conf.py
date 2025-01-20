@@ -23,7 +23,6 @@ extensions = [
     'sphinx.ext.napoleon',
     'sphinx.ext.viewcode',
     'sphinx.ext.githubpages',
-    'sphinx.ext.autosummary',
     'myst_parser',
     'sphinx_gallery.gen_gallery',
     "sphinx_codeautolink",
@@ -39,36 +38,34 @@ sys.path.insert(0, os.path.abspath('..'))
 
 def pdf_scraper(block, block_vars, gallery_conf):
     """Scrape PDFs and move them to the right directory."""
+    import pdf2image
+    from glob import glob
+
     image_path_iterator = block_vars['image_path_iterator']
-    examples_dir = os.path.dirname(block_vars['src_file'])
-    pdf_files = []
+    path_current_example = os.path.dirname(block_vars['src_file'])
+    pdfs = sorted(glob(os.path.join(path_current_example, '*.pdf')))
 
-    # Look for PDFs in the example directory
-    for pdf in os.listdir(examples_dir):
-        if pdf.endswith('.pdf'):
-            # Get next image path (with .png extension)
-            image_path = next(image_path_iterator)
-            pdf_path = os.path.join(examples_dir, pdf)
-            # Copy PDF to build directory
-            shutil.copy(pdf_path, image_path.replace('.png', '.pdf'))
-            pdf_files.append(image_path)
-            # Remove the original PDF
-            os.remove(pdf_path)
-
-    # Create RST to display PDF links
-    if pdf_files:
-        pdf_rst = ""
-        for pdf_file in pdf_files:
-            png_name = os.path.basename(pdf_file)
-            pdf_name = png_name.replace('.png', '.pdf')
-            pdf_rst += f"""
-.. only:: html
-
-    `Download {pdf_name} <{pdf_name}>`_
-
-"""
-        return pdf_rst
-    return ''
+    # Iterate through PNGs, copy them to the Sphinx-Gallery output directory
+    image_names = list()
+    image_path_iterator = block_vars['image_path_iterator']
+    seen = set()
+    for pdf in pdfs:
+        if pdf not in seen:
+            seen |= set(pdf)
+            this_image_path = image_path_iterator.next()
+            image_names.append(this_image_path)
+            print(f"Converting {pdf} to {this_image_path}")
+            pdf2image.convert_from_path(pdf, single_file=True,
+                                        paths_only=True,
+                                        transparent=False,
+                                        output_file=os.path.splitext(this_image_path)[0],
+                                        output_folder=os.path.dirname(this_image_path),
+                                        dpi=500,
+                                        fmt="png")
+            assert os.path.isfile(this_image_path)
+            shutil.move(pdf, this_image_path.replace("png", "pdf"))
+    # Use the `figure_rst` helper function to generate reST for image files
+    return figure_rst(image_names, gallery_conf['src_dir'])
 
 
 sphinx_gallery_conf = {

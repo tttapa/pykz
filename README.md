@@ -3,9 +3,24 @@
     A Python library to generate tikz code.
 </div> 
 
+Generate beautiful, publication-ready figures with the power of Tikz and pgfplots,
+with a comfortable, familiar Python syntax.
+
+pykz aims to provide a syntax similar to matplotlib,
+but with the possibility of directly outputting (and controlling!) your tikz code.
+
+The benefit over alternatives like [tikzplotlib](https://github.com/nschloe/tikzplotlib) is pykz was designed explicitly with pgfplots in mind,
+whereas the goal of tikzplotlib is to map matplotlib concepts to pgfplots.
+This is arguably more convenient if you already have code for matplotlib,
+but it often still requires manual tweaking to the resulting tex-files.
+pykz aims to provide more control over the final output directly in Python,
+so no manual tweaking is required afterwards.
+
 ## Disclaimer 
 
-This library is in very early development. Use at your own risk.
+This library is in very early development, so the API is still
+subject to change. Make sure to pin the version you are using to make sure 
+things don't break.
 
 ## Examples
 
