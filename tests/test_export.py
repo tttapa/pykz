@@ -18,4 +18,4 @@ def test_export_noerrors():
 
 
 def test_preview_noerrors():
-    io.build_latex_code(TEX_STRING)
+    io.export_pdf_from_code(TEX_STRING)
