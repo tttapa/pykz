@@ -1,13 +1,16 @@
 <div align="center">
     <h1>Pykz</h1>
-    A Python library to generate tikz code.
+    <b>A Python library to generate tikz code</b><br><br>
+<img alt="Static Badge" src="https://img.shields.io/badge/docs-examples-green?style=flat-square&link=https%3A%2F%2Fmathijssch.github.io%2Fpykz%2Fgallery%2Findex.html">
+<img alt="PyPI - Python Version" src="https://img.shields.io/pypi/pyversions/pykz?style=flat-square&color=brightgreen">
+
 </div> 
 
 Generate beautiful, publication-ready figures with the power of Tikz and pgfplots,
 with a comfortable, familiar Python syntax.
 
 pykz aims to provide a syntax similar to matplotlib,
-but with the possibility of directly outputting (and controlling!) your tikz code.
+but with the possibility of directly generating (and controlling!) your tikz code.
 
 The benefit over alternatives like [tikzplotlib](https://github.com/nschloe/tikzplotlib) is pykz was designed explicitly with pgfplots in mind,
 whereas the goal of tikzplotlib is to map matplotlib concepts to pgfplots.
@@ -16,13 +19,9 @@ but it often still requires manual tweaking to the resulting tex-files.
 pykz aims to provide more control over the final output directly in Python,
 so no manual tweaking is required afterwards.
 
-## Disclaimer 
+## Usage
 
-This library is in very early development, so the API is still
-subject to change. Make sure to pin the version you are using to make sure 
-things don't break.
-
-## Examples
+### Basic plotting
 
 Pykz has a simple, matplotlib-like interface for basic plotting.
 ```
@@ -41,7 +40,11 @@ pykz.save("test-basic-plot.tex")
 # Save the Tikz code to a temporary file, compile it, and open the pdf in the default viewer.
 pykz.preview()
 ```
-![sample output](images/test-basic-plot_hidpi.png)
+<div align="center">
+<img src="https://mathijssch.github.io/pykz/_images/sphx_glr_basic_inline_001.png" alt="Sample output" width="60%">
+</div>
+
+### Using Tikz primitives 
 
 Alternatively, you can use standard TikZ 
 drawing primitives, without using pfgplots.
@@ -75,13 +78,7 @@ out:
 \end{tikzpicture}
 \end{document}
 ```
-![sample output](images/circles_hidpi.png)
-
-
-## TO-DO 
-
-- [ ] When a color is passed to a point, also pass it to the label options.
-- [ ] Complete the README
-- [ ] More examples
-- [ ] More functionality
-
+<div align="center">
+<img src="https://mathijssch.github.io/pykz/_images/sphx_glr_circles_and_squares_001.png" alt="Sample output" width="60%">
+</div>
+For more examples, visit the [online documentation]()
