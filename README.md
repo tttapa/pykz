@@ -2,7 +2,7 @@
     <h1>Pykz</h1>
     <b>A Python library to generate tikz code</b><br><br>
 <img alt="Static Badge" src="https://img.shields.io/badge/docs-examples-green?style=flat-square&link=https%3A%2F%2Fmathijssch.github.io%2Fpykz%2Fgallery%2Findex.html">
-<img alt="PyPI - Downloads" src="https://img.shields.io/pypi/dm/pykz?style=flat-square&label=PyPI&color=green&link=https%3A%2F%2Fpypi.org%2Fproject%2Fpykz">
+<img alt="PyPI - Version" src="https://img.shields.io/pypi/v/pykz?style=flat-square&logo=pypi&color=green&link=https%3A%2F%2Fpypi.org%2Fproject%2Fpykz">
 <img alt="GitHub License" src="https://img.shields.io/github/license/mathijssch/pykz?style=flat-square&color=green">
 <br><br>
 </div> 
