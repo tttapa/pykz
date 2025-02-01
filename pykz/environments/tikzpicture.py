@@ -80,7 +80,7 @@ class TikzPicture(env.Environment):
             f.write(self.get_code())
 
     def preview(self):
-        from pykz.io import preview_latex_doc
+        from ..io import preview_latex_doc
         is_standalone = self.standalone
         self.standalone = True
         prev = preview_latex_doc(self.get_code())

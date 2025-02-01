@@ -521,7 +521,7 @@ Point = Union[np.ndarray, str, Node]
 
 
 def __create_draw(connector_type: str, points: list[Point], **options) -> Draw:
-    from pykz.commands import Connector
+    from .commands import Connector
     connector = Connector(connector_type)
     draw = Draw(points, connector, **options)
     return draw

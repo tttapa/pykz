@@ -59,7 +59,7 @@ def export_pdf_from_file(path: str) -> str:
         If the given document could not be compiled by pdflatex.
     """
     import subprocess
-    from pykz.exceptions import PDFlatexNotFoundError, CompilationError
+    from .exceptions import PDFlatexNotFoundError, CompilationError
     import os
     working_dir = os.path.dirname(path)
 
