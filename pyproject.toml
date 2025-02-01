@@ -3,7 +3,7 @@ requires = ["flit_core >=3.2,<4"]
 build-backend = "flit_core.buildapi"
 
 [project]
-name = "pykz"
+name = "tttapa-pykz"
 authors = [
     { name="Mathijs Schuurmans", email="mathijs.schuurmans@optia.be" },
 ]
@@ -54,3 +54,6 @@ dev = [
     "matplotlib",
     "pdf2image"
 ]
+
+[tool.flit.module]
+name = "pykz"
