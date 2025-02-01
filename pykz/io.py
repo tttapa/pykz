@@ -1,6 +1,10 @@
+from __future__ import annotations
+
 """Reading and writing to files.
 """
+
 import os
+from typing import Any
 
 
 def __export_to_tempfile(code: str) -> str:
@@ -63,7 +67,7 @@ def export_pdf_from_file(path: str) -> str:
     import os
     working_dir = os.path.dirname(path)
 
-    options = dict(capture_output=True, check=True)
+    options: dict[str, Any] = dict(capture_output=True, check=True)
     if working_dir:
         options["cwd"] = working_dir
 
