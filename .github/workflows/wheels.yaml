@@ -96,7 +96,7 @@ jobs:
           twine check dist/*
 
   # Here we download the sdist and the built Wheel files, and upload them to
-  # TestPyPI. You should follow the trusted publishing instructions in the
+  # PyPI. You should follow the trusted publishing instructions in the
   # https://github.com/pypa/gh-action-pypi-publish README and on
   # https://docs.pypi.org/trusted-publishers carefully!
   release:
@@ -105,8 +105,8 @@ jobs:
     if: ${{ github.event.action == 'released' || github.event.action == 'prereleased' }}
     runs-on: ubuntu-latest
     environment:
-      name: testpypi
-      url: https://test.pypi.org/p/${PACKAGE_NAME}
+      name: pypi
+      url: https://pypi.org/p/${PACKAGE_NAME}
     permissions:
       id-token: write  # mandatory for trusted publishing
     steps:
@@ -117,5 +117,3 @@ jobs:
 
       - name: Publish package distributions to PyPI
         uses: pypa/gh-action-pypi-publish@15c56dba361d8335944d31a2ecd17d700fc7bcbc
-        with:
-          repository-url: https://test.pypi.org/legacy/
