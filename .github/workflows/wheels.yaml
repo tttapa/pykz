@@ -7,7 +7,7 @@ on:
 
 env:
   PACKAGE_VERSION: '0.1.4'
-  PACKAGE_NAME: pykz
+  PACKAGE_NAME: tttapa-pykz
 
 jobs:
   # Build the sdist and wheel distributions
