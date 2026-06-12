@@ -6,10 +6,9 @@ Example Gallery
 Welcome to the example gallery for pykz.
 
 
+.. raw:: html
 
-
-
-
+  <div id='sg-tag-list' class='sphx-glr-tag-list'></div>
 
 
 .. raw:: html
@@ -27,7 +26,7 @@ Welcome to the example gallery for pykz.
   .. image:: /gallery/images/thumb/sphx_glr_basic_inline_thumb.png
     :alt:
 
-  :ref:`sphx_glr_gallery_basic_inline.py`
+  :doc:`/gallery/basic_inline`
 
 .. raw:: html
 
@@ -44,7 +43,7 @@ Welcome to the example gallery for pykz.
   .. image:: /gallery/images/thumb/sphx_glr_basic_customized_thumb.png
     :alt:
 
-  :ref:`sphx_glr_gallery_basic_customized.py`
+  :doc:`/gallery/basic_customized`
 
 .. raw:: html
 
@@ -61,7 +60,7 @@ Welcome to the example gallery for pykz.
   .. image:: /gallery/images/thumb/sphx_glr_circles_and_squares_thumb.png
     :alt:
 
-  :ref:`sphx_glr_gallery_circles_and_squares.py`
+  :doc:`/gallery/circles_and_squares`
 
 .. raw:: html
 
@@ -78,11 +77,28 @@ Welcome to the example gallery for pykz.
   .. image:: /gallery/images/thumb/sphx_glr_low_level_tikz_thumb.png
     :alt:
 
-  :ref:`sphx_glr_gallery_low_level_tikz.py`
+  :doc:`/gallery/low_level_tikz`
 
 .. raw:: html
 
       <div class="sphx-glr-thumbnail-title">Low-level Tikz commands</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Countour plots">
+
+.. only:: html
+
+  .. image:: /gallery/images/thumb/sphx_glr_contours_thumb.png
+    :alt:
+
+  :doc:`/gallery/contours`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Countour plots</div>
     </div>
 
 
@@ -100,6 +116,7 @@ Welcome to the example gallery for pykz.
    /gallery/basic_customized
    /gallery/circles_and_squares
    /gallery/low_level_tikz
+   /gallery/contours
 
 
 .. only:: html

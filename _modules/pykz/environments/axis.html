@@ -26,45 +26,53 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=0790524f97105ba85085" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=0790524f97105ba85085" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-codeautolink.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-codeautolink.css?v=b2176991" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=fd6457a4" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
   
   <!-- So that users can add custom icons -->
-  <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <script defer src="../../../_static/scripts/fontawesome.js?digest=0790524f97105ba85085"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=0790524f97105ba85085" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=0790524f97105ba85085" />
 
     <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
-    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
-    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../../_static/sg-tags.js?v=d80f6fa4"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_modules/pykz/environments/axis';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../../../_static/searchtools.js"></script>
+    <script src="../../../_static/language_data.js"></script>
+    <script src="../../../searchindex.js"></script>
+  
   </head>
-  
-  
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
-
+  <body data-default-mode="">
   
   
   <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
-
+  
+  
+  
   
   <dialog id="pst-search-dialog">
     
@@ -90,7 +98,7 @@
 </div>
 
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
 <div class="bd-header__inner bd-page-width">
   <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
     <span class="fa-solid fa-bars"></span>
@@ -160,11 +168,18 @@
       
         <div class="navbar-item">
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button></div>
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
       
     </div>
     
@@ -235,11 +250,18 @@
         
           <div class="navbar-item">
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button></div>
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
         
       </div>
     
@@ -351,49 +373,54 @@
 <div class="viewcode-block" id="Axis">
 <a class="viewcode-back" href="../../../api.html#pykz.Axis">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">Axis</span><span class="p">(</span><span class="n">Environment</span><span class="p">):</span>
-
 <div class="viewcode-block" id="Axis.__init__">
 <a class="viewcode-back" href="../../../api.html#pykz.Axis.__init__">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-                 <span class="n">xlabel</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-                 <span class="n">ylabel</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-                 <span class="n">view</span><span class="p">:</span> <span class="n">View</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-                 <span class="n">width</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-                 <span class="n">height</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-                 <span class="n">scale_only_axis</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-                 <span class="n">axis_x_line</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-                 <span class="n">axis_y_line</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-                 <span class="n">axis_z_line</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-                 <span class="n">xmode</span><span class="p">:</span> <span class="n">AxisMode</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-                 <span class="n">ymode</span><span class="p">:</span> <span class="n">AxisMode</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-                 <span class="n">zmode</span><span class="p">:</span> <span class="n">AxisMode</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-                 <span class="n">x_dir</span><span class="p">:</span> <span class="n">AxisDir</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-                 <span class="n">y_dir</span><span class="p">:</span> <span class="n">AxisDir</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-                 <span class="n">z_dir</span><span class="p">:</span> <span class="n">AxisDir</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-                 <span class="n">axis_equal</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-                 <span class="n">axis_equal_image</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-                 <span class="n">xmin</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">xmax</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-                 <span class="n">ymin</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">ymax</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-                 <span class="n">zmin</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">zmax</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-                 <span class="n">grid</span><span class="p">:</span> <span class="n">Grid</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-                 <span class="n">xminorgrids</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-                 <span class="n">yminorgrids</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-                 <span class="n">zminorgrids</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-                 <span class="n">xmajorgrids</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-                 <span class="n">ymajorgrids</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-                 <span class="n">zmajorgrids</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-                 <span class="n">xtick</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-                 <span class="n">ytick</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-                 <span class="n">ztick</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-                 <span class="o">**</span><span class="n">extra</span>
-                 <span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">xlabel</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">ylabel</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">view</span><span class="p">:</span> <span class="n">View</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">width</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">height</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">scale_only_axis</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">axis_x_line</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">axis_y_line</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">axis_z_line</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">xmode</span><span class="p">:</span> <span class="n">AxisMode</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">ymode</span><span class="p">:</span> <span class="n">AxisMode</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">zmode</span><span class="p">:</span> <span class="n">AxisMode</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">x_dir</span><span class="p">:</span> <span class="n">AxisDir</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">y_dir</span><span class="p">:</span> <span class="n">AxisDir</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">z_dir</span><span class="p">:</span> <span class="n">AxisDir</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">axis_equal</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">axis_equal_image</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">xmin</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">xmax</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">ymin</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">ymax</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">zmin</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">zmax</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">grid</span><span class="p">:</span> <span class="n">Grid</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">xminorgrids</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">yminorgrids</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">zminorgrids</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">xmajorgrids</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">ymajorgrids</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">zmajorgrids</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">xtick</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">ytick</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">ztick</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">extra</span><span class="p">,</span>
+    <span class="p">):</span>
         <span class="n">arguments</span> <span class="o">=</span> <span class="nb">locals</span><span class="p">()</span>
         <span class="n">arguments</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;extra&quot;</span><span class="p">)</span>
         <span class="n">arguments</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;self&quot;</span><span class="p">)</span>
         <span class="n">arguments</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;__class__&quot;</span><span class="p">)</span>
-        <span class="n">arguments</span> <span class="o">=</span> <span class="p">{</span><span class="n">key</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="p">):</span> <span class="n">value</span> <span class="k">for</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="ow">in</span> <span class="n">arguments</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
-                     <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-                     <span class="p">}</span>
+        <span class="n">arguments</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">key</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="p">):</span> <span class="n">value</span>
+            <span class="k">for</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="ow">in</span> <span class="n">arguments</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+        <span class="p">}</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s2">&quot;axis&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">arguments</span><span class="p">,</span> <span class="o">**</span><span class="n">extra</span><span class="p">)</span></div>
 
 
@@ -405,7 +432,7 @@
 
 <div class="viewcode-block" id="Axis.enlarge_limits">
 <a class="viewcode-back" href="../../../api.html#pykz.Axis.enlarge_limits">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">enlarge_limits</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.05</span><span class="p">,</span> <span class="n">direction</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">enlarge_limits</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.05</span><span class="p">,</span> <span class="n">direction</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Enlarge the range of axes (only x or y if `direction` is provided).</span>
 
 <span class="sd">        Adds the `enlarge x limits` option.</span>
@@ -416,7 +443,9 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">allowed_dirs</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span>
         <span class="k">if</span> <span class="n">direction</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">allowed_dirs</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Expected direction to belong to </span><span class="si">{</span><span class="n">allowed_dirs</span><span class="si">}</span><span class="s2">. Got </span><span class="si">{</span><span class="n">direction</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Expected direction to belong to </span><span class="si">{</span><span class="n">allowed_dirs</span><span class="si">}</span><span class="s2">. Got </span><span class="si">{</span><span class="n">direction</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
 
         <span class="k">if</span> <span class="n">direction</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;enlarge </span><span class="si">{</span><span class="n">direction</span><span class="si">}</span><span class="s2"> limits&quot;</span><span class="p">,</span> <span class="n">amount</span><span class="p">)</span>
@@ -429,6 +458,24 @@
     <span class="c1">#     self.set_option(&quot;axis line style&quot;, Options(</span>
     <span class="c1">#         **{&quot;shorten &gt;&quot;: &quot;-10pt&quot;, &quot;shorten &lt;&quot;: &quot;-10pt&quot;}</span>
     <span class="c1">#     ))</span>
+    <span class="c1">#</span>
+<div class="viewcode-block" id="Axis.set_xmode">
+<a class="viewcode-back" href="../../../api.html#pykz.Axis.set_xmode">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_xmode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;xmode&quot;</span><span class="p">,</span> <span class="n">mode</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Axis.set_ymode">
+<a class="viewcode-back" href="../../../api.html#pykz.Axis.set_ymode">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_ymode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;ymode&quot;</span><span class="p">,</span> <span class="n">mode</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Axis.set_zmode">
+<a class="viewcode-back" href="../../../api.html#pykz.Axis.set_zmode">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_zmode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;zmode&quot;</span><span class="p">,</span> <span class="n">mode</span><span class="p">)</span></div>
+
 
 <div class="viewcode-block" id="Axis.set_ylabel">
 <a class="viewcode-back" href="../../../api.html#pykz.Axis.set_ylabel">[docs]</a>
@@ -442,28 +489,39 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;zlabel&quot;</span><span class="p">,</span> <span class="n">label</span><span class="p">)</span></div>
 
 
+    <span class="k">def</span><span class="w"> </span><span class="nf">_set_lims</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lims</span><span class="p">,</span> <span class="n">labels</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">lim</span><span class="p">,</span> <span class="n">lab</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">lims</span><span class="p">,</span> <span class="n">labels</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">lim</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="n">lab</span><span class="p">]</span> <span class="o">=</span> <span class="n">lim</span>
+
 <div class="viewcode-block" id="Axis.set_xlims">
 <a class="viewcode-back" href="../../../api.html#pykz.Axis.set_xlims">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_xlims</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lims</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">]):</span>
-        <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s2">&quot;xmin&quot;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s2">&quot;xmax&quot;</span><span class="p">])</span> <span class="o">=</span> <span class="n">lims</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_lims</span><span class="p">(</span><span class="n">lims</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;xmin&quot;</span><span class="p">,</span> <span class="s2">&quot;xmax&quot;</span><span class="p">])</span></div>
 
 
 <div class="viewcode-block" id="Axis.set_ylims">
 <a class="viewcode-back" href="../../../api.html#pykz.Axis.set_ylims">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_ylims</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lims</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">]):</span>
-        <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s2">&quot;ymin&quot;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s2">&quot;ymax&quot;</span><span class="p">])</span> <span class="o">=</span> <span class="n">lims</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_lims</span><span class="p">(</span><span class="n">lims</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;ymin&quot;</span><span class="p">,</span> <span class="s2">&quot;ymax&quot;</span><span class="p">])</span></div>
 
 
 <div class="viewcode-block" id="Axis.set_zlims">
 <a class="viewcode-back" href="../../../api.html#pykz.Axis.set_zlims">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_zlims</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lims</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">]):</span>
-        <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s2">&quot;zmin&quot;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s2">&quot;zmax&quot;</span><span class="p">])</span> <span class="o">=</span> <span class="n">lims</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_lims</span><span class="p">(</span><span class="n">lims</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;zmin&quot;</span><span class="p">,</span> <span class="s2">&quot;zmax&quot;</span><span class="p">])</span></div>
 
 
 <div class="viewcode-block" id="Axis.get_ylims">
 <a class="viewcode-back" href="../../../api.html#pykz.Axis.get_ylims">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_ylims</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
         <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;ymin&quot;</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;ymax&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="Axis.get_xlims">
+<a class="viewcode-back" href="../../../api.html#pykz.Axis.get_xlims">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_xlims</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;xmin&quot;</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;xmax&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span></div>
 
 
 <div class="viewcode-block" id="Axis.center">
@@ -495,12 +553,7 @@
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Expected position in </span><span class="si">{</span><span class="n">known_positions</span><span class="si">}</span><span class="s2">. Got </span><span class="si">{</span><span class="n">position</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">center</span><span class="p">()</span>
-        <span class="n">anchors</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
-            <span class="n">above</span><span class="o">=</span><span class="s2">&quot;south&quot;</span><span class="p">,</span>
-            <span class="n">below</span><span class="o">=</span><span class="s2">&quot;north&quot;</span><span class="p">,</span>
-            <span class="n">left</span><span class="o">=</span><span class="s2">&quot;east&quot;</span><span class="p">,</span>
-            <span class="n">right</span><span class="o">=</span><span class="s2">&quot;west&quot;</span>
-        <span class="p">)</span>
+        <span class="n">anchors</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">above</span><span class="o">=</span><span class="s2">&quot;south&quot;</span><span class="p">,</span> <span class="n">below</span><span class="o">=</span><span class="s2">&quot;north&quot;</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="s2">&quot;east&quot;</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="s2">&quot;west&quot;</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">update_option</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">axis</span><span class="si">}</span><span class="s2"> label style&quot;</span><span class="p">,</span> <span class="s2">&quot;anchor&quot;</span><span class="p">,</span> <span class="n">anchors</span><span class="p">[</span><span class="n">position</span><span class="p">])</span></div>
 
@@ -511,26 +564,28 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;axis lines&quot;</span><span class="p">,</span> <span class="s2">&quot;box&quot;</span><span class="p">)</span></div>
 
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">_set_ticks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="n">labels</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">direction</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_set_ticks</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="n">labels</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="n">direction</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">direction</span><span class="si">}</span><span class="s2">tick&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">{{</span><span class="si">{</span><span class="n">format_list</span><span class="p">(</span><span class="n">values</span><span class="p">)</span><span class="si">}</span><span class="se">}}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">labels</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">direction</span><span class="si">}</span><span class="s2">ticklabels&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">{{</span><span class="si">{</span><span class="n">format_list</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span><span class="si">}</span><span class="se">}}</span><span class="s2">&quot;</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Axis.set_yticks">
 <a class="viewcode-back" href="../../../api.html#pykz.Axis.set_yticks">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">set_yticks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="n">labels</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_yticks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="n">labels</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_set_ticks</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="Axis.set_xticks">
 <a class="viewcode-back" href="../../../api.html#pykz.Axis.set_xticks">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">set_xticks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="n">labels</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_xticks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="n">labels</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_set_ticks</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="Axis.set_zticks">
 <a class="viewcode-back" href="../../../api.html#pykz.Axis.set_zticks">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">set_zticks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="n">labels</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_zticks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="n">labels</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_set_ticks</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="s2">&quot;z&quot;</span><span class="p">)</span></div>
 
 
@@ -599,8 +654,8 @@
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=0790524f97105ba85085"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=0790524f97105ba85085"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -620,7 +675,7 @@
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
     <br/>
   </p>
 </div>
@@ -634,7 +689,7 @@
         <div class="footer-item">
 <p class="theme-version">
   <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.18.0.
 </p></div>
       
     </div>
