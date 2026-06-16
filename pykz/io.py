@@ -26,24 +26,31 @@ def __export_to_tempfile(code: str) -> str:
     return f.name
 
 
-def export_pdf_from_code(code: str) -> Path:
+def export_pdf_from_code(code: str, cmd: str = "pdflatex", cmd_args: Sequence[str] | None = None) -> Path:
     """
     Compile the given ``tex`` code to a pdf file.
 
-    Use ``pdflatex`` to compile the document to a standalone pdf file.
+    Use ``pdflatex`` or the specified command to compile the document to a
+    standalone pdf file.
 
     Parameters
     ----------
     code
         String representation of the tex to be compiled.
+    cmd
+        The command to use for compilation. E.g. ``pdflatex``, ``lualatex``,
+        or ``xelatex``.
+    cmd_args
+        Additional command line arguments to pass to the compilation command.
+        Defaults to ``['-interaction=nonstopmode', '-halt-on-error']``.
 
     Returns
     -------
-    str
+    Path
         Path to the generated pdf file.
     """
     file = __export_to_tempfile(code)
-    return export_pdf_from_file(file)
+    return export_pdf_from_file(file, cmd=cmd, cmd_args=cmd_args)
 
 
 def export_pdf_from_file(
@@ -113,46 +120,60 @@ def export_pdf_from_file(
     return path.with_suffix(".pdf")
 
 
-def export_png_from_file(input_file: Pathlike, **options) -> Path:
+def export_png_from_file(input_file: Pathlike, cmd: str = "pdflatex", cmd_args: Sequence[str] | None = None, **options) -> Path:
     """
     Export the given tex file to a png image.
 
-    The tex file is first compiled to pdf using pdflatex. Then the
+    The tex file is first compiled to pdf using the specified command. Then the
     resulting pdf is converted to an image using ``pdf2image``.
 
     Parameters
     ----------
     input_file
         The path to the ``tex`` code to be compiled.
+    cmd
+        The command to use for compilation. E.g. ``pdflatex``, ``lualatex``,
+        or ``xelatex``.
+    cmd_args
+        Additional command line arguments to pass to the compilation command.
+        Defaults to ``['-interaction=nonstopmode', '-halt-on-error']``.
 
     Returns
     -------
     Path
         The path to the generated png file.
     """
-    pdf_file = export_pdf_from_file(input_file)
+    pdf_file = export_pdf_from_file(input_file, cmd=cmd, cmd_args=cmd_args)
     output_path = pdf_file.with_suffix(".png")
     return __convert_pdf_to_png(pdf_file, output_path, **options)
 
 
-def export_png_from_code(code: str, path: str, **options):
+def export_png_from_code(code: str, path: str, cmd: str = "pdflatex", cmd_args: Sequence[str] | None = None, **options):
     """
     Export the given tex file to a png image.
 
-    The tex file is first compiled to pdf using pdflatex. Then the
+    The tex file is first compiled to pdf using the specified command. Then the
     resulting pdf is converted to an image using ``pdf2image``.
 
     Parameters
     ----------
-    input_file
-        The path to the ``tex`` code to be compiled.
+    code
+        String representation of the tex to be compiled.
+    path
+        The output path for the png file.
+    cmd
+        The command to use for compilation. E.g. ``pdflatex``, ``lualatex``,
+        or ``xelatex``.
+    cmd_args
+        Additional command line arguments to pass to the compilation command.
+        Defaults to ``['-interaction=nonstopmode', '-halt-on-error']``.
 
     Returns
     -------
-    str
+    Path
         The path to the generated png file.
     """
-    pdf_file = export_pdf_from_code(code)
+    pdf_file = export_pdf_from_code(code, cmd=cmd, cmd_args=cmd_args)
     output_path = str(path)
     return __convert_pdf_to_png(pdf_file, output_path, **options)
 
